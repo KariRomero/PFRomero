@@ -1,0 +1,80 @@
+{
+  "courses": [
+    {
+      "curso": "React",
+      "turno": "Tarde",
+      "id": "3"
+    },
+    {
+      "curso": "Angular",
+      "turno": "Mañana",
+      "id": "ae90"
+    },
+    {
+      "id": "3bef",
+      "curso": "JavaScript",
+      "turno": "Noche"
+    },
+    {
+      "id": "321e",
+      "curso": "Typescript",
+      "turno": "Tarde"
+    }
+  ],
+  "lessons": [
+    {
+      "clase": "React Native",
+      "horario": "12Pm-16Pm",
+      "id": "3"
+    },
+    {
+      "clase": "Intro a JS",
+      "horario": "8Am-12Pm",
+      "id": "246f"
+    },
+    {
+      "clase": "Intro a Ts",
+      "horario": "12Pm-16Pm",
+      "id": "ea92"
+    },
+    {
+      "id": "1283",
+      "clase": "A Material",
+      "horario": "18Pm-22pm"
+    }
+  ],
+  "students": [
+    {
+      "nombre": "Nicolas",
+      "apellido": "Sanchez",
+      "email": "neke@test.com",
+      "curso": "React",
+      "turno": "Tarde",
+      "id": "2"
+    },
+    {
+      "nombre": "Manuel",
+      "apellido": "Trulls",
+      "email": "manu@mail.com",
+      "curso": "JavaScript",
+      "turno": "Noche",
+      "id": "10fa"
+    },
+    {
+      "id": "e2ec",
+      "nombre": "Constanza",
+      "apellido": "Maranon",
+      "email": "coti@mail.com",
+      "curso": "Typescript",
+      "turno": "Tarde"
+    },
+    {
+      "id": "9193",
+      "nombre": "zxc",
+      "apellido": "dcsd",
+      "email": "sdc@sddc.cio",
+      "curso": "React",
+      "turno": "Noche"
+    }
+  ]
+}

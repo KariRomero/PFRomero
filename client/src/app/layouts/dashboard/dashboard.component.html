@@ -1,0 +1,47 @@
+<mat-drawer-container class="example-container" autosize>
+
+    <!-- SIDEBAR -->
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <mat-nav-list>            
+            <div class="nav-list">
+                <a mat-list-item routerLink="home">
+                    <mat-icon>home</mat-icon>
+                    Inicio
+                </a>
+                <a *ngIf="(authUser$ | async)?.rol ==='ADMIN'" mat-list-item routerLink="students">
+                    <mat-icon>person</mat-icon>
+                    Alumnos
+                </a>
+                <a *ngIf="(authUser$ | async)?.rol ==='ADMIN'" mat-list-item routerLink="courses">
+                    <mat-icon>menu_book</mat-icon>
+                    Cursos
+                </a>
+                <a *ngIf="(authUser$ | async)?.rol ==='ADMIN'" mat-list-item routerLink="lessons">
+                    <mat-icon>book_5</mat-icon>
+                    Clases
+                </a>
+                <a (click)="logOut()" mat-list-item>Cerrar sesión</a>
+            </div>
+        </mat-nav-list> 
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+
+        <!-- TOOLBAR -->
+        <mat-toolbar class="toolbar">
+            <button 
+            (click)="drawer.toggle()"
+            mat-icon-button 
+            aria-label="Example icon button with a menu icon"
+            >
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Universidad 2.0</span>
+        </mat-toolbar>
+
+        <!-- <app-students/> -->
+        <router-outlet/>
+        
+    </div>  
+  </mat-drawer-container>
+  
