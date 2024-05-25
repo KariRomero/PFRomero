@@ -8,6 +8,8 @@ import { StudentsDialogComponent } from './students-dialog/students-dialog.compo
 import { StudentsDetailComponent } from './pages/students-detail/students-detail.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StudentsEffects } from './store/students.effects';
+import { StoreModule } from '@ngrx/store';
+import { studentsFeature } from './store/students.reducer';
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import { StudentsEffects } from './store/students.effects';
     CommonModule,
     StudentsRoutingModule,
     SharedModule,
+    StoreModule.forFeature(studentsFeature),
     EffectsModule.forFeature([StudentsEffects])
   ],
   exports:[StudentsComponent]

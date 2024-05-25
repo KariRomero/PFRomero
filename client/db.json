@@ -45,14 +45,6 @@
   ],
   "students": [
     {
-      "nombre": "Nicolas",
-      "apellido": "Sanchez",
-      "email": "neke@test.com",
-      "curso": "React",
-      "turno": "Tarde",
-      "id": "2"
-    },
-    {
       "nombre": "Manuel",
       "apellido": "Trulls",
       "email": "manu@mail.com",

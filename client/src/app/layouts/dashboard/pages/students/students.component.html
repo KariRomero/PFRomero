@@ -4,7 +4,7 @@
     </button>
 </div>
 
-<table mat-table [dataSource]="students" class="mat-elevation-z8">        
+<table mat-table [dataSource]="(students$ | async) || []" class="mat-elevation-z8">        
     
     
     <!-- nombre y apellido -->
