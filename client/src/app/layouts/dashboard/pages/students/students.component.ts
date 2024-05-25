@@ -23,7 +23,6 @@ export class StudentsComponent implements OnInit {
     'acciones'
   ]
 
-  // students : IStudent[] = [];
   students$ : Observable<IStudent[]>;
   error$:Observable<unknown>;
 
@@ -38,13 +37,7 @@ export class StudentsComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.store.dispatch(StudentsActions.loadStudentss());   
-   
-    // this.studentsService.getStudents().subscribe({
-    //   next:(students)=>{
-    //     this.students = students
-    //   }
-    // })
+    this.store.dispatch(StudentsActions.loadStudentss());
   }
 
   openDialog(editingStudent?: IStudent): void {
@@ -63,41 +56,11 @@ export class StudentsComponent implements OnInit {
         }
       });
   }
-  
-  // openDialog(editingStudent?: IStudent): void {
-  //   this.matDialog
-  //     .open(StudentsDialogComponent, { data: editingStudent })
-  //     .afterClosed()
-  //     .subscribe({
-  //       next: (result) => {
-  //         if (result) {
-  //           if (editingStudent) {
-  //             this.studentsService.updateStudent(editingStudent.id, result).subscribe({
-  //               next:()=>{
-  //                 this.students = this.students.map((s)=>s.id === editingStudent.id ? {...s,...result} : s)
-  //               }
-  //             })
-  //           } else {
-  //             this.studentsService.addStudents(result).subscribe({
-  //               next:(studentCreado)=>{
-  //                 this.students = [...this.students, studentCreado]
-  //               }
-  //             })
-  //           }
-  //         }
-  //       }
-  //     });
-  // }
-  
+    
 
   onDelete(id: number): void {
     if (confirm('¿Está seguro de eliminar usuario?')) {
-      this.store.dispatch(StudentsActions.deleteStudentById({id}))
-      // this.studentsService.deleteStudent(id).subscribe({
-      //   next: () => {
-      //     this.students = this.students.filter(student => student.id !== id);
-      //   }
-      // });
+      this.store.dispatch(StudentsActions.deleteStudentById({id}))      
     }
   }
   

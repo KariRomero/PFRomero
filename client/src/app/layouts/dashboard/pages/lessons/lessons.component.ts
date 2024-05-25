@@ -3,6 +3,10 @@ import { LessonsService } from './lessons.service';
 import { ILesson } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { LessonsDialogComponent } from './lessons-dialog/lessons-dialog.component';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectLessons, selectLessonsError } from './store/lesson.selectors';
+import { LessonActions } from './store/lesson.actions';
 
 @Component({
   selector: 'app-lessons',
@@ -12,8 +16,12 @@ import { LessonsDialogComponent } from './lessons-dialog/lessons-dialog.componen
 export class LessonsComponent implements OnInit {
   constructor(
     private lessonsService:LessonsService,
-    private matDialog:MatDialog
-  ){}
+    private matDialog:MatDialog,
+    private store:Store
+  ){
+    this.lessons$ = this.store.select(selectLessons);
+    this.error$ = this.store.select(selectLessonsError);
+  }
 
   displayedColumns:string[] = [
     'clase',
@@ -21,14 +29,11 @@ export class LessonsComponent implements OnInit {
     'acciones'
   ]
 
-  lessons:ILesson[]  =[]
+   lessons$: Observable<ILesson[]>;
+  error$:Observable<unknown>;
 
   ngOnInit(): void {
-    this.lessonsService.getLessons().subscribe({
-      next:(lessons)=>{
-        this.lessons = lessons
-      }
-    })
+    this.store.dispatch(LessonActions.loadLessons());
   }
 
   openDialog(editingLesson?:ILesson):void{
@@ -41,17 +46,9 @@ export class LessonsComponent implements OnInit {
       next:(result)=>{
         if(result){
           if(editingLesson){
-            this.lessonsService.updateLesson(editingLesson.id,result).subscribe({
-              next:()=>{
-                this.lessons = this.lessons.map((l)=>l.id===editingLesson.id ? {...l,...result} : l);
-              }
-            })
+            this.store.dispatch(LessonActions.updateLesson({id:editingLesson.id,payload:result}));
           } else{
-            this.lessonsService.addLessons(result).subscribe({
-              next:(lessonCreada)=>{
-                this.lessons = [...this.lessons, lessonCreada]
-              }
-            });
+           this.store.dispatch(LessonActions.createLesson({ payload:result}))
           }
         }
       }
@@ -60,11 +57,7 @@ export class LessonsComponent implements OnInit {
 
   onDelete(id:number): void {
     if(confirm('¿Está seguro de eliminar clase?')) {
-      this.lessonsService.deleteLesson(id).subscribe({
-        next:()=>{
-          this.lessons = this.lessons.filter(l=>l.id != id);
-        }
-      });
+     this.store.dispatch(LessonActions.deleteStudentById({id}))
     }
   }
 
