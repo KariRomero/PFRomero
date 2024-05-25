@@ -3,6 +3,10 @@ import { ICourse } from './models';
 import { CoursesService } from './courses.service';
 import { CoursesDialogComponent } from './courses-dialog/courses-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { selectCourses, selectCoursesError } from './store/course.selectors';
+import { CourseActions } from './store/course.actions';
 
 @Component({
   selector: 'app-courses',
@@ -12,8 +16,12 @@ import { MatDialog } from '@angular/material/dialog';
 export class CoursesComponent implements OnInit {
   constructor(
     private coursesService: CoursesService,
-    private matDialog:MatDialog
-  ){}
+    private matDialog:MatDialog,
+    private store: Store
+  ){
+    this.courses$ = this.store.select(selectCourses);
+    this.error$ = this.store.select(selectCoursesError);
+  }
 
   displayedColumns:string[] = [
     'curso',
@@ -21,14 +29,11 @@ export class CoursesComponent implements OnInit {
     'acciones'
   ]
 
-  courses : ICourse[]=[]
+  courses$:Observable<ICourse[]>;
+  error$:Observable<unknown>;
 
   ngOnInit(): void {
-    this.coursesService.getCourses().subscribe({
-      next:(courses)=>{
-        this.courses = courses 
-      }
-    })    
+    this.store.dispatch(CourseActions.loadCourses()); 
   }
 
   openDialog(editingCourse?:ICourse):void{
@@ -41,17 +46,9 @@ export class CoursesComponent implements OnInit {
       next:(result)=>{
         if(result){
           if(editingCourse){
-            this.coursesService.updateCourse(editingCourse.id,result).subscribe({
-              next:()=>{
-                this.courses = this.courses.map((c)=>c.id===editingCourse.id ? {...c,...result} : c)
-              }
-            });
+            this.store.dispatch(CourseActions.updateCourse({id:editingCourse.id,payload:result}))
           } else{
-            this.coursesService.addCourses(result).subscribe({
-              next:(courseCreado)=>{
-                this.courses = [...this.courses,courseCreado]
-              }
-            });
+           this.store.dispatch(CourseActions.createCourse({payload:result}))
           }
         }
       }
@@ -60,11 +57,7 @@ export class CoursesComponent implements OnInit {
 
   onDelete(id:number): void {
     if(confirm('¿Está seguro de eliminar curso?')) {
-      this.coursesService.deleteCourse(id).subscribe({
-        next:()=>{
-          this.courses = this.courses.filter(c=>c.id != id)
-        }
-      });
+      this.store.dispatch(CourseActions.deleteCourseById({id}))
     }
   }
 

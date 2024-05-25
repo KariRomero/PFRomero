@@ -51,12 +51,12 @@ export class LessonEffects {
   deleteLessonsById$ = createEffect(() => {
     return this.actions$.pipe(
 
-      ofType(LessonActions.deleteStudentById),
+      ofType(LessonActions.deleteLessonById),
       concatMap((action) =>
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this.lessonsService.deleteLesson(action.id).pipe(
-          map(data => LessonActions.deleteStudentByIdSuccess({ data })),
-          catchError(error => of(LessonActions.deleteStudentsByIdFailure({ error }))))
+          map(data => LessonActions.deleteLessonByIdSuccess({ data })),
+          catchError(error => of(LessonActions.deleteLessonByIdFailure({ error }))))
       )
     );
   });

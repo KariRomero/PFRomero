@@ -86,20 +86,20 @@ export const reducer = createReducer(
   }),
   
   
-  on(LessonActions.updateLesson, state => {
+  on(LessonActions.deleteLessonById, state => {
     return{
       ...state,
       isLoading:true
     }
   }),
-  on(LessonActions.updateLessonSuccess, (state, action) => {
+  on(LessonActions.deleteLessonByIdSuccess, (state, action) => {
     return{
       ...state,
       isLoading:false,
       lessons:state.lessons.filter((l)=>l.id!=action.data.id)
     }
   }),
-  on(LessonActions.updateLessonFailure, (state, action) => {
+  on(LessonActions.deleteLessonByIdFailure, (state, action) => {
     return{
       ...state,
       error:action.error,

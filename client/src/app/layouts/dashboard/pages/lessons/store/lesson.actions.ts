@@ -16,8 +16,8 @@ export const LessonActions = createActionGroup({
     'Update Lesson Success': props<{ data: ILesson }>(),
     'Update Lesson Failure': props<{ error: unknown }>(),
 
-    'Delete Student By Id': props<{ id:number }>(),
-    'Delete Student By Id Success': props<{ data: ILesson }>(),
-    'Delete Students By Id Failure': props<{ error: unknown }>(),
+    'Delete Lesson By Id': props<{ id:number }>(),
+    'Delete Lesson By Id Success': props<{ data: ILesson }>(),
+    'Delete Lesson By Id Failure': props<{ error: unknown }>(),
   }
 });

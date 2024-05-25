@@ -57,7 +57,7 @@ export class LessonsComponent implements OnInit {
 
   onDelete(id:number): void {
     if(confirm('¿Está seguro de eliminar clase?')) {
-     this.store.dispatch(LessonActions.deleteStudentById({id}))
+     this.store.dispatch(LessonActions.deleteLessonById({id}))
     }
   }
 
