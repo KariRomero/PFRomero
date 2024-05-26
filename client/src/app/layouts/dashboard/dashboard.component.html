@@ -36,7 +36,7 @@
             >
                 <mat-icon>menu</mat-icon>
             </button>
-            <span>Universidad 2.0</span>
+            <span>Universidad 2.0 - {{(routeData$ | async)?.['title']}}</span>
         </mat-toolbar>
 
         <!-- <app-students/> -->

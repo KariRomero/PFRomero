@@ -10,20 +10,32 @@ const routes: Routes = [
   },
   {
     path:'home',
+    data: {
+      title: 'Inicio',
+    },
     loadChildren:()=>import('./pages/home/home.module').then((m)=>m.HomeModule)  
   },
   {
     path:'students',
+    data: {
+      title: 'Estudiantes',
+    },
     canActivate:[adminGuard],
     loadChildren:()=>import('./pages/students/students.module').then((m)=>m.StudentsModule)
   },
   {
     path:'courses',
+    data: {
+      title: 'Cursos',
+    },
     canActivate:[adminGuard],
     loadChildren:()=>import('./pages/courses/courses.module').then((m)=>m.CoursesModule)
   },
   {
     path:'lessons',
+    data: {
+      title: 'Clases',
+    },
     canActivate:[adminGuard],
     loadChildren:()=>import('./pages/lessons/lessons.module').then((m)=>m.LessonsModule)
   }

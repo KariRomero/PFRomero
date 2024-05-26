@@ -1,14 +1,9 @@
 {
   "courses": [
     {
-      "curso": "React",
+      "curso": "React js",
       "turno": "Tarde",
       "id": "3"
-    },
-    {
-      "curso": "Angular",
-      "turno": "Mañana",
-      "id": "ae90"
     },
     {
       "id": "3bef",
@@ -19,16 +14,16 @@
       "id": "321e",
       "curso": "Typescript",
       "turno": "Tarde"
+    },
+    {
+      "id": "dd29",
+      "curso": "asd",
+      "turno": "Tarde"
     }
   ],
   "lessons": [
     {
-      "clase": "React Native",
-      "horario": "12Pm-16Pm",
-      "id": "3"
-    },
-    {
-      "clase": "Intro a JS",
+      "clase": "Intro a js",
       "horario": "8Am-12Pm",
       "id": "246f"
     },
@@ -41,24 +36,21 @@
       "id": "1283",
       "clase": "A Material",
       "horario": "18Pm-22pm"
+    },
+    {
+      "id": "dd0e",
+      "clase": "prueba",
+      "horario": "8Am-12Pm"
     }
   ],
   "students": [
     {
-      "nombre": "Manuel",
-      "apellido": "Trulls",
-      "email": "manu@mail.com",
-      "curso": "JavaScript",
-      "turno": "Noche",
-      "id": "10fa"
-    },
-    {
-      "id": "e2ec",
       "nombre": "Constanza",
-      "apellido": "Maranon",
+      "apellido": "Mara",
       "email": "coti@mail.com",
       "curso": "Typescript",
-      "turno": "Tarde"
+      "turno": "Noche",
+      "id": "e2ec"
     },
     {
       "id": "9193",
@@ -67,6 +59,14 @@
       "email": "sdc@sddc.cio",
       "curso": "React",
       "turno": "Noche"
+    },
+    {
+      "id": "3741",
+      "nombre": "feli",
+      "apellido": "prueba",
+      "email": "asd@asd.com",
+      "curso": "React",
+      "turno": "Mañana"
     }
   ]
 }
